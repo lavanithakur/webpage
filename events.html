@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events — Karuuna </title>
+  <link rel="icon" href="image/weblogo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="karuuna.css" />
+</head>
+<body>
+
+<div id="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><img src="image/weblogo.png" alt="logo" width="30">Karuuna </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="color:var(--accent)">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link active" href="events.html" data-nav-page="events.html">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html" data-nav-page="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#why-karuuna">Why Karuuna</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <a href="login.html" class="nav-link" style="font-weight:600;color:var(--text-muted)">Sign In</a>
+        <a href="signup.html" class="btn-primary-k ripple-btn" style="padding:0.4rem 1.2rem;font-size:0.9rem;text-decoration:none">Join Free</a>
+        <button id="themeToggle" title="Toggle theme">
+          <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="blob blob-1" style="opacity:0.14;top:-200px;left:-200px"></div>
+  <div class="container position-relative">
+    <div class="row align-items-end g-4">
+      <div class="col-lg-7 reveal visible">
+        <div class="section-chip">🌿 Live Events</div>
+        <h1 class="page-header-title">Find Your Next<br><span style="color:var(--accent)">Green Mission</span></h1>
+        <p class="page-header-sub">Browse verified environmental events across India. Filter by city, cause, or date and register in one tap.</p>
+      </div>
+      <div class="col-lg-5 reveal visible d-200">
+        <div class="row g-3">
+          <div class="col-4"><div class="stat-card"><div class="stat-number">2,400+</div><div class="stat-label">Events</div></div></div>
+          <div class="col-4"><div class="stat-card"><div class="stat-number">380+</div><div class="stat-label">NGOs</div></div></div>
+          <div class="col-4"><div class="stat-card"><div class="stat-number">22</div><div class="stat-label">States</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- FILTER BAR -->
+<section style="padding:2.5rem 0">
+  <div class="container">
+    <div class="filter-bar reveal visible">
+      <div class="flex-grow-1" style="min-width:200px">
+        <div style="position:relative">
+          <i class="bi bi-search" style="position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);color:var(--text-muted)"></i>
+          <input type="text" class="k-input" placeholder="Search events, NGOs, causes…" style="padding-left:2.5rem" id="searchInput" oninput="filterEvents()" />
+        </div>
+      </div>
+      <div style="min-width:150px">
+        <select class="k-select" id="cityFilter" onchange="filterEvents()">
+          <option value="">All Cities</option>
+          <option>Gurugram</option>
+          <option>Mumbai</option>
+          <option>Delhi</option>
+          <option>Bengaluru</option>
+          <option>Chennai</option>
+          <option>Jaipur</option>
+          <option>Hyderabad</option>
+          <option>Pune</option>
+        </select>
+      </div>
+      <div style="min-width:150px">
+        <select class="k-select" id="typeFilter" onchange="filterEvents()">
+          <option value="">All Types</option>
+          <option>Tree Planting</option>
+          <option>Beach Cleanup</option>
+          <option>Eco Education</option>
+          <option>River Cleanup</option>
+          <option>Waste Mgmt</option>
+          <option>Wildlife</option>
+        </select>
+      </div>
+      <div style="min-width:150px">
+        <select class="k-select" id="dateFilter" onchange="filterEvents()">
+          <option value="">Any Date</option>
+          <option>This Week</option>
+          <option>This Month</option>
+          <option>Next Month</option>
+        </select>
+      </div>
+      <button class="btn-outline-k ripple-btn" onclick="clearFilters()" style="padding:0.65rem 1.2rem;font-size:0.9rem;white-space:nowrap">
+        <i class="bi bi-x-circle me-1"></i>Clear
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS GRID -->
+<section style="padding:0 0 5rem">
+  <div class="container">
+
+    <!-- Active filters indicator -->
+    <div class="d-flex justify-content-between align-items-center mb-4 reveal visible">
+      <div style="color:var(--text-muted);font-size:0.9rem">
+        Showing <span style="color:var(--accent);font-weight:700" id="eventCount">9</span> events
+      </div>
+      <div class="d-flex gap-2 align-items-center" style="color:var(--text-muted);font-size:0.88rem">
+        <span>Sort by:</span>
+        <select class="k-select" style="padding:0.4rem 2rem 0.4rem 0.7rem;font-size:0.85rem;min-width:130px">
+          <option>Date: Soonest</option>
+          <option>Credits: High</option>
+          <option>Popularity</option>
+          <option>Nearest</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row g-4" id="eventsGrid">
+
+      <div class="col-md-6 col-lg-4 reveal visible event-item" data-city="Gurugram" data-type="Tree Planting">
+        <div class="event-card">
+          <div class="event-thumb e1">🌲<span class="badge-type">Tree Planting</span><span class="credits-badge">🪙 80 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Green Earth Foundation</div>
+            <div class="event-title">Aaravali Forest Restoration Drive</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 5 April 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Gurugram, HR</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:74%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">37/50 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal visible d-100 event-item" data-city="Mumbai" data-type="Beach Cleanup">
+        <div class="event-card">
+          <div class="event-thumb e2">🌊<span class="badge-type">Beach Cleanup</span><span class="credits-badge">🪙 60 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Ocean Warriors India</div>
+            <div class="event-title">Versova Shoreline Cleanup Campaign</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 12 April 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Mumbai, MH</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:88%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">88/100 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal visible d-200 event-item" data-city="Jaipur" data-type="Eco Education">
+        <div class="event-card">
+          <div class="event-thumb e3">📚<span class="badge-type">Eco Education</span><span class="credits-badge">🪙 50 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Prakriti Shiksha Sangh</div>
+            <div class="event-title">Climate Awareness Workshop for Schools</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 20 April 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Jaipur, RJ</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:40%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">20/50 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal event-item" data-city="Delhi" data-type="River Cleanup">
+        <div class="event-card">
+          <div class="event-thumb e4">🏞️<span class="badge-type">River Cleanup</span><span class="credits-badge">🪙 90 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Yamuna Mitra Samiti</div>
+            <div class="event-title">Yamuna Ghat Cleanliness Drive</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 26 April 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Delhi, DL</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:55%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">55/100 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal d-100 event-item" data-city="Bengaluru" data-type="Tree Planting">
+        <div class="event-card">
+          <div class="event-thumb e5">🌳<span class="badge-type">Tree Planting</span><span class="credits-badge">🪙 70 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Namma Bengaluru Green</div>
+            <div class="event-title">Cubbon Park Urban Forest Initiative</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 3 May 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Bengaluru, KA</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:30%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">15/50 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal d-200 event-item" data-city="Chennai" data-type="Wildlife">
+        <div class="event-card">
+          <div class="event-thumb e6">🦋<span class="badge-type">Wildlife</span><span class="credits-badge">🪙 100 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Chennai Biodiversity Trust</div>
+            <div class="event-title">Butterfly Garden & Pollinator Survey</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 10 May 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Chennai, TN</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:20%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">6/30 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal event-item" data-city="Pune" data-type="Waste Mgmt">
+        <div class="event-card">
+          <div class="event-thumb e3">♻️<span class="badge-type">Waste Mgmt</span><span class="credits-badge">🪙 65 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Swachha Pune Abhiyan</div>
+            <div class="event-title">Zero Waste Neighbourhood Audit</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 17 May 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Pune, MH</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:60%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">30/50 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal d-100 event-item" data-city="Hyderabad" data-type="Eco Education">
+        <div class="event-card">
+          <div class="event-thumb e1">🌿<span class="badge-type">Eco Education</span><span class="credits-badge">🪙 55 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Telangana Eco Forum</div>
+            <div class="event-title">School Green Ambassador Training Camp</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 24 May 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Hyderabad, TS</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:45%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">36/80 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal d-200 event-item" data-city="Gurugram" data-type="River Cleanup">
+        <div class="event-card">
+          <div class="event-thumb e2">💧<span class="badge-type">River Cleanup</span><span class="credits-badge">🪙 75 credits</span></div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Save Our Water</div>
+            <div class="event-title">Sahibi River Rejuvenation Walk</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 1 June 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Gurugram, HR</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="k-progress flex-grow-1"><div class="k-progress-bar" style="width:10%"></div></div>
+              <span style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap">5/50 joined</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this,'signup.html')">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- No results -->
+    <div id="noResults" style="display:none" class="text-center py-5">
+      <div style="font-size:3rem;margin-bottom:1rem">🔍</div>
+      <h4>No events found</h4>
+      <p style="color:var(--text-muted)">Try adjusting your filters or <button onclick="clearFilters()" style="background:none;border:none;color:var(--accent);font-weight:600;cursor:pointer">clear all</button>.</p>
+    </div>
+
+    <!-- Load more -->
+    <div class="text-center mt-5">
+      <button class="btn-outline-k ripple-btn" style="padding:0.8rem 2rem">
+        <i class="bi bi-arrow-down me-2"></i>Load More Events
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-banner" style="padding:5rem 0">
+  <div class="container text-center position-relative">
+    <div class="section-chip">NGOs</div>
+    <h2 class="cta-title mt-2">Running an Eco Event?</h2>
+    <p class="cta-sub mt-3 mb-4">Register your NGO and publish events to reach thousands of passionate volunteers across India.</p>
+    <a href="signup.html" class="btn-primary-k ripple-btn" style="padding:0.9rem 2.2rem;font-size:1.05rem;text-decoration:none">
+      <i class="bi bi-building me-2"></i>Register Your NGO
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-4">
+        <div class="footer-brand"><img src="image/weblogo.png" alt="logo" width="30">Karuuna </div>
+        <div class="footer-tagline">"Chota kadam, bada badlav"</div>
+        <p class="mt-3" style="color:var(--text-muted);font-size:0.88rem;max-width:280px;line-height:1.65">Connecting passionate individuals with NGOs to create grassroots environmental change across India.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2"><div class="footer-heading">Platform</div><a href="events.html" class="footer-link">Find Events</a><a href="signup.html" class="footer-link">Register NGO</a><a href="#" class="footer-link">Green Credits</a></div>
+      <div class="col-6 col-lg-2"><div class="footer-heading">Company</div><a href="blog.html" class="footer-link">Blog</a><a href="#" class="footer-link">About Us</a><a href="#" class="footer-link">Careers</a></div>
+      <div class="col-6 col-lg-2"><div class="footer-heading">Support</div><a href="#" class="footer-link">Help Center</a><a href="#" class="footer-link">Contact</a><a href="#" class="footer-link">Privacy Policy</a></div>
+      <div class="col-lg-2"><div class="footer-heading">Newsletter</div><input type="email" placeholder="your@email.com" class="k-input mb-2" style="font-size:0.85rem" /><button class="btn-primary-k ripple-btn w-100" style="border-radius:var(--radius-md);padding:0.5rem;font-size:0.85rem">Subscribe</button></div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 footer-bottom">
+      <span>© 2025 Karuuna. All rights reserved.</span>
+      <span>Made with 💚 for a greener Bharat</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="karuuna.js"></script>
+<script>
+  function filterEvents() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const city = document.getElementById('cityFilter').value;
+    const type = document.getElementById('typeFilter').value;
+    const items = document.querySelectorAll('.event-item');
+    let visible = 0;
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      const itemCity = item.getAttribute('data-city');
+      const itemType = item.getAttribute('data-type');
+      const matchQ = !q || text.includes(q);
+      const matchCity = !city || itemCity === city;
+      const matchType = !type || itemType === type;
+      const show = matchQ && matchCity && matchType;
+      item.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('eventCount').textContent = visible;
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  function clearFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('cityFilter').value = '';
+    document.getElementById('typeFilter').value = '';
+    document.getElementById('dateFilter').value = '';
+    filterEvents();
+  }
+</script>
+</body>
+</html>

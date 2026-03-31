@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karuuna</title>
+  <link rel="icon" href="image/weblogo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="karuuna.css" />
+
+</head>
+<body>
+
+<!-- PAGE TRANSITION OVERLAY -->
+<div id="page-transition"></div>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav id="mainNav" class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand ripple-btn" href="#"><img src="image/weblogo.png" alt="logo" width="30">Karuuna </a>
+    <!-- <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="color:var(--accent)"> -->
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#how-it-works">How It Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="events.html" data-nav-page="events.html">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html" data-nav-page="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#why-karuuna">Why Karuuna</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+        <a href="login.html" class="nav-link" data-nav-page="login.html" style="font-weight:600;color:var(--text-muted)">Sign In</a>
+        <button id="themeToggle" title="Toggle theme"> 
+          <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <!-- Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="container position-relative">
+    <div class="row align-items-center gy-5">
+      <!-- Left -->
+      <div class="col-lg-6">
+        <div class="hero-eyebrow reveal">🌿 India's Green Volunteer Network</div>
+        <h1 class="hero-title reveal d-100">
+          Small Steps,<br><span>Big Change.</span>
+        </h1>
+        <p class="hero-sub reveal d-200">
+          Karuuna connects passionate volunteers with NGOs driving real environmental impact. Find events, earn Green Credits, and amplify your voice.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mt-4 reveal d-300">
+          <button class="btn-primary-k ripple-btn" onclick="handleCTA(this,'signup.html')">
+            <i class="bi bi-person-heart me-2"></i>Join as Volunteer
+          </button>
+          <button class="btn-outline-k ripple-btn" onclick="handleCTA(this,'signup.html')">
+            <i class="bi bi-building me-2"></i>Register NGO
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="row g-3 mt-4 reveal d-400">
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="stat-number">2,400+</div>
+              <div class="stat-label">Events</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="stat-number">380+</div>
+              <div class="stat-label">NGOs</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="stat-number">52K+</div>
+              <div class="stat-label">Volunteers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right visual -->
+      <div class="col-lg-6 d-none d-lg-flex justify-content-center hero-visual reveal d-200">
+        <div class="hero-glow-circle"><img src="image/weblogo.png" alt="logo" width="170"></div>
+        <div class="orbit-badge"><i class="bi bi-lightning-charge-fill"></i> 1,200 credits earned today</div>
+        <div class="orbit-badge"><i class="bi bi-geo-alt-fill"></i> 14 events near you</div>
+        <div class="orbit-badge"><i class="bi bi-people-fill"></i> 320 volunteers active</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-chip reveal">Process</div>
+      <h2 class="section-title reveal d-100">How It Works</h2>
+      <p class="section-sub reveal d-200">Three simple steps to start making an impact in your community.</p>
+    </div>
+
+    <div class="row align-items-stretch g-3">
+      <!-- Step 1 -->
+      <div class="col-lg-4 reveal">
+        <div class="step-card">
+          <span class="step-number">01</span>
+          <div class="step-icon"><i class="bi bi-search-heart"></i></div>
+          <h4>Find an Event</h4>
+          <p>Browse hundreds of verified environmental events by location, cause, or NGO. Filter by tree-planting, beach cleanup, education drives & more.</p>
+          <div class="mt-3 d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill" style="background:rgba(168,197,126,0.12);color:var(--accent);border:1px solid rgba(168,197,126,0.2)">Tree Planting</span>
+            <span class="badge rounded-pill" style="background:rgba(168,197,126,0.12);color:var(--accent);border:1px solid rgba(168,197,126,0.2)">Beach Cleanup</span>
+            <span class="badge rounded-pill" style="background:rgba(168,197,126,0.12);color:var(--accent);border:1px solid rgba(168,197,126,0.2)">Education</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div class="col-lg-auto d-none d-lg-flex step-connector">
+        <i class="bi bi-arrow-right"></i>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="col-lg-4 reveal d-200">
+        <div class="step-card">
+          <span class="step-number">02</span>
+          <div class="step-icon"><i class="bi bi-calendar2-check"></i></div>
+          <h4>Attend & Contribute</h4>
+          <p>Register with one tap. Get reminders, event details, and connect with other volunteers. Show up, take part, and make a real-world difference.</p>
+          <div class="mt-3" style="background:rgba(168,197,126,0.06);border-radius:10px;padding:0.8rem;border:1px solid var(--border)">
+            <small style="color:var(--text-muted)"><i class="bi bi-check-circle-fill me-1" style="color:var(--accent)"></i> QR attendance check-in</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div class="col-lg-auto d-none d-lg-flex step-connector">
+        <i class="bi bi-arrow-right"></i>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="col-lg-4 reveal d-300">
+        <div class="step-card">
+          <span class="step-number">03</span>
+          <div class="step-icon"><i class="bi bi-award"></i></div>
+          <h4>Earn Green Credits</h4>
+          <p>Every hour of service earns you Green Credits — a badge of your commitment. Redeem for rewards, show off on your EcoVoice profile, or donate them.</p>
+          <div class="mt-3" style="background:rgba(168,197,126,0.06);border-radius:10px;padding:0.8rem;border:1px solid var(--border)">
+            <small style="color:var(--accent);font-weight:700"><i class="bi bi-coin me-1"></i> 1 hour = 10 Green Credits</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════ FEATURED EVENTS ══════════ -->
+<section id="events">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-chip reveal">Events</div>
+      <h2 class="section-title reveal d-100">Featured Events</h2>
+      <p class="section-sub reveal d-200">Upcoming opportunities to get involved right now.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Event 1 -->
+      <div class="col-md-4 reveal">
+        <div class="event-card">
+          <div class="event-thumb e1">
+            🌲
+            <span class="badge-type">Tree Planting</span>
+          </div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Green Earth Foundation</div>
+            <div class="event-title">Aaravali Forest Restoration Drive</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 5 April 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Gurugram, HR</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this)">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="col-md-4 reveal d-200">
+        <div class="event-card">
+          <div class="event-thumb e2">
+            🌊
+            <span class="badge-type">Beach Cleanup</span>
+          </div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Ocean Warriors India</div>
+            <div class="event-title">Versova Shoreline Cleanup Campaign</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 12 April 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Mumbai, MH</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this)">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="col-md-4 reveal d-300">
+        <div class="event-card">
+          <div class="event-thumb e3">
+            📚
+            <span class="badge-type">Eco Education</span>
+          </div>
+          <div class="event-body">
+            <div class="event-ngo"><i class="bi bi-building me-1"></i>Prakriti Shiksha Sangh</div>
+            <div class="event-title">Climate Awareness Workshop for Schools</div>
+            <div class="event-meta">
+              <span><i class="bi bi-calendar3"></i> 20 April 2025</span>
+              <span><i class="bi bi-geo-alt"></i> Jaipur, RJ</span>
+            </div>
+            <button class="btn-primary-k ripple-btn w-100" onclick="handleCTA(this)">
+              <i class="bi bi-check2-circle me-2"></i>Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5 reveal">
+      <button class="btn-outline-k ripple-btn" onclick="handleCTA(this)">
+        <i class="bi bi-grid me-2"></i>View All Events
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════ WHY KARUUNA ══════════ -->
+<section id="why-karuuna">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-chip reveal">Why Karuuna</div>
+      <h2 class="section-title reveal d-100">Built for Impact</h2>
+      <p class="section-sub reveal d-200">Everything you need to discover, act, and grow as an eco-citizen.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Discovery -->
+      <div class="col-md-4 reveal">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="bi bi-compass"></i></div>
+          <h4>Smart Discovery</h4>
+          <p>AI-powered event matching based on your location, skills, and interests. Never miss an opportunity to contribute near you.</p>
+          <ul class="mt-3 ps-3" style="color:var(--text-muted);font-size:0.88rem;line-height:2">
+            <li>Location-based recommendations</li>
+            <li>Skill & interest filters</li>
+            <li>Real-time availability alerts</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Green Credits -->
+      <div class="col-md-4 reveal d-200">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="bi bi-currency-exchange"></i></div>
+          <h4>Green Credits System</h4>
+          <p>Your hours of service are transformed into Green Credits — a transparent, blockchain-inspired ledger of your environmental contributions.</p>
+          <div class="mt-3 p-3" style="background:rgba(168,197,126,0.06);border-radius:12px;border:1px solid var(--border)">
+            <div style="color:var(--accent);font-weight:700;font-size:1.4rem;font-family:Manrope">🪙 12,840</div>
+            <small style="color:var(--text-muted)">credits rewarded this month</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- EcoVoice -->
+      <div class="col-md-4 reveal d-300">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="bi bi-megaphone"></i></div>
+          <h4>EcoVoice Profile</h4>
+          <p>Your public eco-citizenship profile. Share your volunteer journey, showcase badges, post environmental pledges and inspire your network.</p>
+          <div class="d-flex gap-2 mt-3 flex-wrap">
+            <span class="badge rounded-pill" style="background:rgba(168,197,126,0.12);color:var(--accent);border:1px solid rgba(168,197,126,0.2);padding:0.4rem 0.8rem">🌱 Seedling</span>
+            <span class="badge rounded-pill" style="background:rgba(168,197,126,0.12);color:var(--accent);border:1px solid rgba(168,197,126,0.2);padding:0.4rem 0.8rem">🌿 Sprout</span>
+            <span class="badge rounded-pill" style="background:rgba(168,197,126,0.12);color:var(--accent);border:1px solid rgba(168,197,126,0.2);padding:0.4rem 0.8rem">🌳 Guardian</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════ CTA BANNER ══════════ -->
+<section id="cta-banner">
+  <div class="container position-relative text-center">
+    <div class="reveal">
+      <div class="section-chip">Get Started</div>
+      <h2 class="cta-title mt-2">Start Your<br>Green Journey</h2>
+      <p class="cta-sub mt-3 mb-5">Join 52,000+ volunteers already making a difference across India.<br>Every action counts. Every credit matters.</p>
+      <div class="d-flex justify-content-center flex-wrap gap-3">
+        <button class="btn-primary-k ripple-btn" style="padding:0.9rem 2.2rem;font-size:1.05rem" onclick="handleCTA(this)">
+          <i class="bi bi-rocket-takeoff me-2"></i>Join Free Today
+        </button>
+        <button class="btn-outline-k ripple-btn" style="padding:0.9rem 2.2rem;font-size:1.05rem" onclick="handleCTA(this)">
+          <i class="bi bi-play-circle me-2"></i>Watch How It Works
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="row gy-4">
+      <!-- Brand -->
+      <div class="col-lg-4">
+        <div class="footer-brand"><img src="image/weblogo.png" alt="logo" width="30">Karuuna </div>
+        <div class="footer-tagline">"Chota kadam, bada badlav"</div>
+        <p class="mt-3" style="color:var(--text-muted);font-size:0.88rem;max-width:280px;line-height:1.65">
+          Connecting passionate individuals with NGOs to create grassroots environmental change across India.
+        </p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Platform</div>
+        <a href="#" class="footer-link">Find Events</a>
+        <a href="#" class="footer-link">Register NGO</a>
+        <a href="#" class="footer-link">Green Credits</a>
+        <a href="#" class="footer-link">EcoVoice</a>
+      </div>
+
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Company</div>
+        <a href="#" class="footer-link">About Us</a>
+        <a href="#" class="footer-link">Blog</a>
+        <a href="#" class="footer-link">Careers</a>
+        <a href="#" class="footer-link">Press Kit</a>
+      </div>
+
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Support</div>
+        <a href="#" class="footer-link">Help Center</a>
+        <a href="#" class="footer-link">Contact</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Use</a>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-2">
+        <div class="footer-heading">Stay Updated</div>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:0.8rem">Get eco event alerts in your inbox.</p>
+        <div class="d-flex gap-2 flex-column">
+          <input type="email" placeholder="your@email.com" class="form-control" style="background:var(--card-bg);border:1px solid var(--border);color:var(--text);border-radius:10px;font-size:0.85rem" />
+          <button class="btn-primary-k ripple-btn" style="border-radius:10px;padding:0.5rem 1rem;font-size:0.85rem" onclick="handleCTA(this)">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-divider" />
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 footer-bottom">
+      <span>© 2025 Karuuna. All rights reserved.</span>
+      <span>Made with 💚 for a greener Bharat</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="karuuna.js"></script>
+<script>
+  // ── Scroll-hide navbar ──────────────────────────
+  const nav = document.getElementById('mainNav');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('hide', y > lastY && y > 100);
+    lastY = y;
+  });
+
+  // ── Dark mode toggle ────────────────────────────
+  const html = document.documentElement;
+  const icon = document.getElementById('themeIcon');
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+  });
+
+  // ── Ripple effect ───────────────────────────────
+  document.querySelectorAll('.ripple-btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size/2}px;top:${e.clientY - rect.top - size/2}px`;
+      this.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+    });
+  });
+
+  // ── CTA page transition ─────────────────────────
+  function handleCTA(btn) {
+    const overlay = document.getElementById('page-transition');
+    overlay.classList.add('active');
+    setTimeout(() => overlay.classList.remove('active'), 700);
+  }
+
+  // ── Scroll reveal ───────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
